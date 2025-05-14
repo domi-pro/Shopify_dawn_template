@@ -1,0 +1,186 @@
+{%- style -%}
+    @media screen and (max-width: 749px) {
+      #Text-button-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile}}px;
+      }
+    }
+
+    @media screen and (min-width: 750px) {
+      #Text-button-{{ section.id }}{
+        padding-top: {{ section.settings.padding_top_desktop }}px;
+        padding-bottom: {{ section.settings.passing_bottom_desktop }}px;
+      }
+    }
+
+    
+  {%- endstyle -%}
+  <div id="Text-button-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when "text" -%}
+          {%- style -%}
+            @media screen and (max-width: 749px) {
+              #Text-block-{{ block.id }}{
+                font-size: {{ block.settings.fontsize_mobile }}px;
+                text-align: {{ block.settings.alignment_mobile }};
+              }
+            }
+        
+            @media screen and (min-width: 750px) {
+              #Text-block-{{ block.id }}{
+                font-size: {{ block.settings.fontsize_desktop }}px;
+                text-align: {{ block.settings.alignment_desktop }};
+              }
+            }
+          {%- endstyle -%}
+          <div id="Text-block-{{ block.id }}">
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- when "buttons" -%}
+          {%- style -%}
+            @media screen and (max-width: 749px) {
+              #Button-block-{{ block.id }}{
+                font-size: {{ block.settings.fontsize_mobile }}px;
+                text-align: {{ block.settings.alignment_mobile }};
+              }
+            }
+        
+            @media screen and (min-width: 750px) {
+              #Button-block-{{ block.id }}{
+                font-size: {{ block.settings.fontsize_desktop }}px;
+                text-align: {{ block.settings.alignment_desktop }};
+              }
+            }
+          {%- endstyle -%}
+          <a id="Button-block-{{ block.id }}" href="{{ block.settings.button_link }}" class="button button--secondary">{{ block.settings.text }}</a>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+{% schema %}
+  {
+    "name": "t:sections.text-button.name",
+    "settings": [
+      {
+          "type": "header",
+          "content": "t:sections.text-button.settings.desktop_padding.content"
+      },
+      {
+        "type": "number",
+        "id": "padding_top_desktop",
+        "label": "t:sections.text-button.settings.padding_top_desktop",
+        "default": 5,
+      },
+      {
+        "type": "number",
+        "id": "padding_bottom_desktop",
+        "label": "t:sections.text-button.settings.padding_bottom_desktop",
+        "default": 5,
+      },
+      {
+          "type": "header",
+          "content": "t:sections.text-button.settings.mobile_padding.content"
+      },
+      {
+        "type": "number",
+        "id": "padding_top_mobile",
+        "label": "t:sections.text-button.settings.padding_top_mobile",
+        "default": 5,
+      },
+      {
+        "type": "number",
+        "id": "padding_bottom_mobile",
+        "label": "t:sections.text-button.settings.padding_bottom_mobile",
+        "default": 5,
+      }
+    ],
+    "blocks": [
+      {
+      "type": "text",
+      "name": "t:sections.text-button.blocks.text.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.text-button.blocks.text.settings.text.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.text-button.blocks.text.settings.desktop_settings.content"
+        },
+        {
+          "type": "number",
+          "id": "fontsize_desktop",
+          "label": "t:sections.text-button.blocks.text.settings.fontsize_desktop.label",
+        },
+        {
+         "type": "text_alignment",
+         "id": "alignment_desktop",
+         "label": "t:sections.text-button.blocks.text.settings.alignment_desktop.label",
+         "default": "left"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.text-button.blocks.text.settings.mobile_settings.content"
+        },
+        {
+          "type": "number",
+          "id": "fontsize_mobile",
+          "label": "t:sections.text-button.blocks.text.settings.fontsize_mobile.label",
+        },
+        {
+         "type": "text_alignment",
+         "id": "alignment_mobile",
+         "label": "t:sections.text-button.blocks.text.settings.alignment_mobile.label",
+         "default": "left"
+      }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.text-button.blocks.buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.text-button.blocks.buttons.settings.text.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.text-button.blocks.buttons.settings.button_link.label"
+        },
+        {
+          "type": "number",
+          "id": "fontsize_desktop",
+          "label": "t:sections.text-button.blocks.buttons.settings.fontsize_desktop.label",
+        },
+        {
+          "type": "number",
+          "id": "fontsize_mobile",
+          "label": "t:sections.text-button.blocks.buttons.settings.fontsize_mobile.label",
+        },
+        {
+         "type": "text_alignment",
+         "id": "alignment_desktop",
+         "label": "t:sections.text-button.blocks.buttons.settings.alignment_desktop.label",
+         "default": "center"
+        },
+        {
+         "type": "text_alignment",
+         "id": "alignment_mobile",
+         "label": "t:sections.text-button.blocks.buttons.settings.alignment_mobil.label",
+         "default": "center"
+        },
+      ],
+    }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.text-button.presets.name"
+      }
+    ]
+  }
+{% endschema %}
