@@ -39,6 +39,15 @@
           </div>
         {%- when "buttons" -%}
           {%- style -%}
+            #Button-block-{{block.id}}{
+                display: block;
+                color: black;
+                text-decoration: none;
+                width: 20vh;
+                padding: 10px 0;
+                border: solid black 1px;
+                margin: auto;
+                }
             @media screen and (max-width: 749px) {
               #Button-block-{{ block.id }}{
                 font-size: {{ block.settings.fontsize_mobile }}px;
@@ -53,7 +62,7 @@
               }
             }
           {%- endstyle -%}
-          <a id="Button-block-{{ block.id }}" href="{{ block.settings.button_link }}" class="button button--secondary">{{ block.settings.text }}</a>
+          <a id="Button-block-{{ block.id }}" href="{{ block.settings.button_link }}">{{ block.settings.text }}</a>
       {%- endcase -%}
     {%- endfor -%}
   </div>
@@ -171,7 +180,7 @@
         {
          "type": "text_alignment",
          "id": "alignment_mobile",
-         "label": "t:sections.text-button.blocks.buttons.settings.alignment_mobil.label",
+         "label": "t:sections.text-button.blocks.buttons.settings.alignment_mobile.label",
          "default": "center"
         },
       ],
